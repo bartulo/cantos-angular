@@ -1,0 +1,10 @@
+<ul class="list type">
+  <li class="list-item" *ngFor="let item of audio | keyvalue">
+    <span class="p-pri">{{item.key}}: {{item.value}}</span>
+  </li>
+</ul>
+<div *ngIf="source">
+  <audio autoplay>
+    <source [src]="source" type="audio/mpeg" >
+  </audio>
+</div>

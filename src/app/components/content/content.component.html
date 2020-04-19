@@ -1,0 +1,8 @@
+<ul class="list type">
+  <li class="list-item" tabindex=-1>
+    <input type="text" [(ngModel)]="prueba" (keyup)="changeFilter()" />
+  </li>
+  <li class="list-item" *ngFor="let bird of filtered; let i=index" tabindex="{{ i }}">
+    <span class="p-pri">{{ bird }}</span>
+  </li>
+</ul>
