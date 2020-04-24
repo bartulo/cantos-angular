@@ -1,5 +1,7 @@
-<ul class="list type">
-  <li class="list-item" *ngFor="let song of songs; let i=index" tabindex={{i}} id="{{ song.id }}">
-    <span class="p-pri">{{ song.type }} // {{ song.en }}</span>
-  </li>
-</ul>
+<div class="container">
+  <div class="list type">
+    <span #allthis class="list-item" *ngFor="let song of songs; let i=index" tabindex={{i}} id="{{ song.id }}">
+     {{ song.type }} // {{ song.en }}
+    </span>
+  </div>
+</div>

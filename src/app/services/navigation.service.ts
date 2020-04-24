@@ -1,25 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import {Subject} from 'rxjs';
+import {ContentComponent} from '../components/content/content.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NavigationService {
-  // TODO intentar solucionar para que el método init sólo se utilice una vez y no tener que definir esta variable
-  public valor: boolean;
+  public currentItem: Subject<Element> = new Subject<Element>();
 
-  constructor(private _router: Router) { 
-    this.valor = false;
+  constructor(private _router: Router) {
   }
 
   public init() {
-    console.log(this.valor);
-    if (this.valor != true) {
-      const firstElement = this.getAllElements()[0];
-      firstElement.classList.add('focus');
-      (firstElement as HTMLElement).focus();
-      this.valor = true;
-    }
+    const firstElement = this.getAllElements()[0];
+    firstElement.classList.add('focus');
+    (firstElement as HTMLElement).focus();
   }
 
   public getAllElements(): NodeListOf<HTMLInputElement | Element> {
@@ -34,13 +30,13 @@ export class NavigationService {
 
   public Down() {
     const [old, index] = this.getCurrentItem();
-    console.log(old.children[0].innerHTML);
     (old as HTMLElement).blur();
     old.classList.remove('focus');
     const last = this.getAllElements().length;
     const active = (index != last-1) ? this.getAllElements()[index+1] : this.getAllElements()[0];
     (active as HTMLElement).focus();
     active.classList.add('focus');
+    this.currentItem.next(active);
   }
 
   public Up() {
@@ -48,26 +44,33 @@ export class NavigationService {
     (old as HTMLElement).blur();
     old.classList.remove('focus');
     const last = this.getAllElements().length;
-    const active = (index != 0) ? this.getAllElements()[index-1] : this.getAllElements()[last-1];
+    const active = (index > 0 ) ? this.getAllElements()[index-1] : this.getAllElements()[last-1];
     (active as HTMLElement).focus();
     active.classList.add('focus');
+    this.currentItem.next(active);
   }
 
   public GoToSongsList(bird: string) {
-    this.valor = false;
     this._router.navigate(['/songsList', bird]);
   }
 
   public GoToAudioPlayer(id: number) {
-    this.valor = false;
     this._router.navigate(['/songsPlayer', id]);
+  }
+
+  public GoToHome() {
+    this._router.navigate(['/']);
   }
 
   public GoToSearch() {
     const old = this.getCurrentItem()[0];
     (old as HTMLElement).blur();
     old.classList.remove('focus');
-    document.querySelector('input').focus();
+    var inputElem = document.querySelector('input');
+    console.log(inputElem.style.display);
+    inputElem.style.display = 'block';
+    inputElem.focus();
+    this.currentItem.next(inputElem);
   }
 
 }

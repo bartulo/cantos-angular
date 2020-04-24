@@ -1,8 +1,10 @@
-<ul class="list type">
-  <li class="list-item" *ngFor="let item of audio | keyvalue">
-    <span class="p-pri">{{item.key}}: {{item.value}}</span>
-  </li>
-</ul>
+<div class="container">
+  <div class="list type">
+    <span #allthis class="list-item" *ngFor="let item of audio | keyvalue; let i = index" [tabindex]=i>
+      {{item.key}}: {{item.value}}
+    </span>
+  </div>
+</div>
 <div *ngIf="source">
   <audio autoplay>
     <source [src]="source" type="audio/mpeg" >

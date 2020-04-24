@@ -3,12 +3,14 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background-color: #2a400c;
+  background-color: #9a40dc;
   padding: 3px 10px;
+  -webkit-box-align: center;
+  -webkit-box-pack: start;
 }
 
 .header span {
-  font-size: 20px;
+  font-size: 15px;
   margin: 0px auto;
   font-weight: 600;
   color: #ffffff;

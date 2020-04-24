@@ -14,7 +14,6 @@ export class AppComponent implements OnInit, AfterViewChecked {
   ngOnInit() {}
 
   ngAfterViewChecked(){
-    this.navigationService.init()
   }
 
   @HostListener('document:keydown.arrowdown')

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ConfigService } from '../../services/config.service';
 import { NavigationService } from '../../services/navigation.service';
@@ -8,8 +8,9 @@ import { NavigationService } from '../../services/navigation.service';
   templateUrl: './songs-list.component.html',
   styleUrls: ['./songs-list.component.css']
 })
-export class SongsListComponent implements OnInit {
+export class SongsListComponent implements OnInit, AfterViewInit {
 
+  @ViewChildren('allthis') list: QueryList<any>;
   public songs: any[];
   public bird: string;
 
@@ -29,12 +30,23 @@ export class SongsListComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit(): void {
+    this.list.changes.subscribe( t => {
+      this.navigationService.init();
+    });
+  }
+
   @HostListener('document:keydown.enter')
   OnEnter() {
     const current = this.navigationService.getCurrentItem()[0];
     const id = parseInt(current.getAttribute('id'), 10);
     console.log(id);
     this.navigationService.GoToAudioPlayer(id);
+  }
+
+  @HostListener('document:keydown.softleft')
+  OnSoftLeft() {
+    this.navigationService.GoToHome();
   }
 
 }
