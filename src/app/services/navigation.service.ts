@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {Subject} from 'rxjs';
-import {ContentComponent} from '../components/content/content.component';
 
 @Injectable({
   providedIn: 'root'
