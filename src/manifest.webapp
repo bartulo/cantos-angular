@@ -1,26 +1,23 @@
 {
   "version": "1.0.0",
-  "name": "Xeno-Canto",
-  "description": "pagina web Xeno Canto para dispositivos Kaios",
+  "name": "My first Angular App for KaiOS",
+  "description": "Simple example of a to-do list",
+  "type": "web",
   "launch_path": "/index.html",
   "icons": {
     "56": "/assets/icons/xc_56.png",
-    "84": "/assets/icons/xc_84.png",
     "112": "/assets/icons/xc_112.png"
   },
   "developer": {
-    "name": "Bernardo Fontana",
-    "url": "https://github.com/bartulo/cantos-angular"
+    "name": "KaiOS Team",
+    "url": "https://www.kaiostech.com"
   },
   "locales": {
     "en-US": {
-      "name": "Xeno-Canto",
-      "subtitle": "BirdSongs",
-      "description": "Xeno Canto Interface for Kaios devices"
+      "name": "My first Angular App for KaiOS",
+      "subtitle": "Simple example of a to-do list",
+      "description": "Simple example of a to-do list"
     }
   },
-  "installs_allowed_from": [
-    "*"
-  ],
   "default_locale": "en-US"
 }
