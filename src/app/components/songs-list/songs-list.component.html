@@ -1,7 +1,8 @@
 <div class="container">
   <div class="list type">
     <span #allthis class="list-item" *ngFor="let song of songs; let i=index" tabindex={{i}} id="{{ song.id }}">
-     {{ song.type }} // {{ song.en }}
+     {{ song.type }} // {{ song.q }}
     </span>
   </div>
 </div>
+<app-softkey right='' center='Enter' left='Inicio'></app-softkey>
